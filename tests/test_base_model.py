@@ -2,13 +2,12 @@
 from models.base_model import BaseModel
 import unittest
 import uuid
-from models.base_model import BaseModel
 
 
 class testBaseModel(unittest.TestCase):
     """ Tests the main model. """
 
-    def test_initilization(self):
+    def test_attributes(self):
         my_model = BaseModel()
         my_model.name = "My First Model"
         my_model.number = 89
