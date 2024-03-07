@@ -3,6 +3,7 @@
 
 
 import cmd
+import sys
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,7 +15,6 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program\n"""
         return True
 
-
     def do_EOF(self, line):
         """ Ctrl+d exits from the interpreter\n"""
         return True
@@ -24,4 +24,8 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+    if len(sys.argv) > 1:
+        # non interactive mode
+        HBNBCommand().onecmd(' '.join(sys.argv[1:]))
+    else:
+        HBNBCommand().cmdloop()
