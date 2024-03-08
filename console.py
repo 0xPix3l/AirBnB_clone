@@ -4,7 +4,7 @@
 import cmd
 import sys
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage  # Import FileStorage class
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,7 +12,6 @@ class HBNBCommand(cmd.Cmd):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.file_storage = FileStorage()  # Create an instance of FileStorage
 
     prompt = "(hbnb)"
 
@@ -39,8 +38,8 @@ class HBNBCommand(cmd.Cmd):
             else:
                 new_instance = BaseModel()
                 # Use FileStorage instance to add new instance
-                self.file_storage.new(new_instance)
-                self.file_storage.save()  # Save the changes to file
+                storage.new(new_instance)
+                storage.save()  # Save the changes to file
                 print(new_instance.id)
 
 

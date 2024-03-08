@@ -47,5 +47,4 @@ class FileStorage:
         if exists(file):
             with open(file, encoding='utf-8') as f:
                 json_str = f.read()
-                print('\n\n{}\n\n'.format(json_str))
                 type(self).__objects = json.loads(json_str)
