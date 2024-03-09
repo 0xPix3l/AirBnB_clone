@@ -28,7 +28,7 @@ class testBaseModel(unittest.TestCase):
         self.assertIsInstance(self.my_model_2.created_at, datetime)
         self.assertIsInstance(self.my_model_2.updated_at, datetime)
         self.assertNotEqual(self.my_model, self.my_model_2)
-        
+
 
 if __name__ == "__main__":
     unittest.main()
