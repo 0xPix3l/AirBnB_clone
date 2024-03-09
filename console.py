@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
             return
-        elif(args[0] not in self.classname_list):
+        elif (args[0] not in self.classname_list):
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
             return
-        elif(args[0] not in self.classname_list):
+        elif (args[0] not in self.classname_list):
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -99,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
             for value in storage.all().values():
                 output.append(value.__str__())
             print(output)
-        elif(args[0] not in self.classname_list):
+        elif (args[0] not in self.classname_list):
             print("** class doesn't exist **")
         else:
             for key, value in storage.all().items():
