@@ -8,6 +8,7 @@ from models.state import State
 
 class TestState(unittest.TestCase):
     """ This class tests the State class """
+
     def setUp(self):
         """ called before executing the test method """
         self.my_state = State()
@@ -16,4 +17,3 @@ class TestState(unittest.TestCase):
         """ Tests the name attribute """
         self.my_state.name = "state"
         self.assertEqual(self.my_state.name, "state")
-        
