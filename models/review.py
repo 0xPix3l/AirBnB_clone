@@ -2,7 +2,7 @@
 """ This module contains the 'Review' class """
 
 
-from models import BaseModel
+from models.base_model import BaseModel
 
 
 class review(BaseModel):
