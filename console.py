@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 """ This module contains the HBNBCommand class """
 
+
 import cmd
 import sys
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 from models import storage
 
 
@@ -104,6 +111,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             for key, value in storage.all().items():
                 if args[0] in key:
+                    print("arg exists in key")
                     output.append(storage.all()[key].__str__())
                 else:
                     return
