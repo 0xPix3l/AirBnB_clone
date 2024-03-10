@@ -30,8 +30,20 @@ class testBaseModel(unittest.TestCase):
         self.assertNotEqual(self.my_model, self.my_model_2)
 
     def test_save(self):
-        pass
+        """ Tests the save method """
+        old_updated_at = self.my_model.updated_at
+        self.my_model.save()
+        self.assertNotEqual(old_updated_at, self.my_model.updated_at)
+        
+    def test_to_dict(self):
+        """ Tests the to_dict method """
+        dct = self.my_model.to_dict()
+        self.assertEqual(type(dct['created_at']), str)
+        self.assertEqual(type(dct['updated_at']), str)
 
+        if self.assertIn('__class__', dct):
+            v = type(self.my_model).__name
+            self.assertEqual(dct['__class__'], v)
 
 if __name__ == "__main__":
     unittest.main()
