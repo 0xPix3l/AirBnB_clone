@@ -102,20 +102,28 @@ class HBNBCommand(cmd.Cmd):
         based or not on the class name\n"""
         args = line.split()
         output = []
-        if len(args) == 0:
-            for value in storage.all().values():
-                output.append(value.__str__())
-            print(output)
-        elif (args[0] not in self.classname_list):
+        dct = storage.all()
+        if (len(args) > 0 and args[0] not in self.classname_list):
             print("** class doesn't exist **")
+
+        elif len(args) == 0:
+            for key,value in dct.items():
+                cls_name = key.split('.')[0]
+                # Create an instance directly from the class name
+                cls = globals()[cls_name]
+                obj = cls(**value)
+                output.append(obj.__str__())
+
         else:
-            for key, value in storage.all().items():
+            cls_name = args[0]
+            cls = globals()[cls_name]
+            for key, value in dct.items():
                 if args[0] in key:
-                    print("arg exists in key")
-                    output.append(storage.all()[key].__str__())
-                else:
-                    return
-                print(output)
+                    obj = cls(**value)
+                    output.append(obj.__str__())
+
+        if(len(output) > 0):
+            print(output)
 
     def do_update(self, line):
         """Updates an instance based on the class name and id
