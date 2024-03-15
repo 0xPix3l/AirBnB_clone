@@ -67,15 +67,13 @@ class HBNBCommand(cmd.Cmd):
             if key not in storage.all().keys():
                 print("** no instance found **")
             else:
-                obj = storage.all()[key]
-                print(obj)
+                cls_name = key.split('.')[0]
+                # Create an instance directly from the class name                                                                          
+                cls = globals()[cls_name]
+                dct = storage.all()
+                obj = cls(**dct[key])
+                print(obj.__str__())
 
-                # obj_id = args[1]
-                # class_name = args[0]
-                # obj_key = '{}.{}'.format(class_name, obj_id)
-                # obj_dict = storage.all().get(obj_key)
-                # obj_instance = BaseModel(**obj_dict)
-                # print(obj_instance)
 
     def do_destroy(self, line):
         """Deletes an instance based on the class name
@@ -157,10 +155,15 @@ class HBNBCommand(cmd.Cmd):
 
         attr_name = args[2]
         attr_value = args[3]
-        # Update the attribute in the dictionary
+
+
         obj_dict[attr_name] = attr_value
-        # Save the changes to file
-        storage.save()
+        # Create an instance directly from the class name                                                                           
+        cls = globals()[args[0]]
+        obj = cls(**obj_dict)
+        
+        obj.save()
+
 
 
 if __name__ == '__main__':
